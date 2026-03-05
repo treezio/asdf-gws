@@ -57,6 +57,12 @@ download_release() {
 	version="$1"
 	filename="$2"
 
+	if [ "$version" = "latest" ]; then
+		version="$(curl "${curl_opts[@]}" "https://api.github.com/repos/googleworkspace/cli/releases/latest" |
+			grep '"tag_name"' |
+			sed 's/.*"tag_name": *"v\{0,1\}\([^"]*\)".*/\1/')"
+	fi
+
 	platform="$(get_platform)"
 	arch="$(get_arch)"
 	url="$GH_REPO/releases/download/v${version}/gws-${arch}-${platform}.tar.gz"
