@@ -35,7 +35,7 @@ asdf list-all gws
 asdf install gws latest
 
 # Set a version globally (on your ~/.tool-versions file)
-asdf global gws latest
+asdf set --home gws latest
 
 # Now gws commands are available
 gws --version
